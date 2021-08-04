@@ -5,7 +5,7 @@
 # | Builds Gotenberg binary.
 # |
 
-FROM thecodingmachine/gotenberg:workspace AS workspace
+FROM gcr.io/isc-corporate/dev/gotenberg:workspace AS workspace
 
 ARG VERSION
 
@@ -29,7 +29,7 @@ COPY cmd ./cmd
 # Build our binary.
 RUN go build -o gotenberg -ldflags "-X main.version=${VERSION}" cmd/gotenberg/main.go
 
-FROM thecodingmachine/gotenberg:base
+FROM gcr.io/isc-corporate/dev/gotenberg:base
 
 LABEL authors="Julien Neuhart <j.neuhart@thecodingmachine.com>"
 
@@ -57,6 +57,8 @@ COPY --from=workspace /gotenberg/package/gotenberg /usr/local/bin/
 
 USER gotenberg
 WORKDIR /gotenberg
+
+ENV DISABLE_GOOGLE_CHROME=1 DEFAULT_WAIT_TIMEOUT=30 MAXIMUM_WAIT_TIMEOUT=60
 
 EXPOSE 3000
 CMD [ "gotenberg" ]

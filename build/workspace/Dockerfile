@@ -2,7 +2,7 @@ ARG GOLANG_VERSION
 
 FROM golang:${GOLANG_VERSION}-stretch as golang
 
-FROM thecodingmachine/gotenberg:base
+FROM gcr.io/isc-corporate/dev/gotenberg:base
 
 # |--------------------------------------------------------------------------
 # | Common libraries

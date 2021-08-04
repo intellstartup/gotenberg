@@ -19,18 +19,6 @@ RUN apt-get update &&\
     rm -rf /var/lib/apt/lists/*
 
 # |--------------------------------------------------------------------------
-# | Chrome
-# |--------------------------------------------------------------------------
-# |
-# | Installs Chrome.
-# |
-RUN curl https://dl.google.com/linux/linux_signing_key.pub | apt-key add - &&\
-    echo "deb https://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list &&\
-    apt-get update &&\
-    apt-get install --no-install-recommends -y --allow-unauthenticated google-chrome-stable &&\
-    rm -rf /var/lib/apt/lists/*
-
-# |--------------------------------------------------------------------------
 # | LibreOffice
 # |--------------------------------------------------------------------------
 # |
@@ -38,7 +26,7 @@ RUN curl https://dl.google.com/linux/linux_signing_key.pub | apt-key add - &&\
 # |
 
 # https://github.com/nextcloud/docker/issues/380
-RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 &&\ 
+RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 &&\
     echo "deb https://httpredir.debian.org/debian/ buster-backports main contrib non-free" >> /etc/apt/sources.list &&\
     apt-get update &&\
     apt-get --no-install-recommends -t buster-backports -y install libreoffice &&\
@@ -79,7 +67,7 @@ RUN curl -o /usr/bin/pdftk "https://gitlab.com/pdftk-java/pdftk/-/jobs/${PDFTK_V
 # | Note: ttf-mscorefonts-installer are installed on top of this Dockerfile.
 # |
 
-# Credits: 
+# Credits:
 # https://github.com/arachnys/athenapdf/blob/master/cli/Dockerfile
 # https://help.accusoft.com/PrizmDoc/v12.1/HTML/Installing_Asian_Fonts_on_Ubuntu_and_Debian.html
 RUN apt-get update &&\
@@ -125,7 +113,7 @@ COPY build/base/fonts.conf /etc/fonts/conf.d/100-gotenberg.conf
 # | Default user
 # |--------------------------------------------------------------------------
 # |
-# | All processes in the Docker container will run as a dedicated 
+# | All processes in the Docker container will run as a dedicated
 # | non-root user.
 # |
 

@@ -9,10 +9,10 @@ VERSION="$4"
 DOCKER_USER="$5"
 DOCKER_PASSWORD="$6"
 
-docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+#docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
 
 VERSION="${VERSION//v}"
-SEMVER=( ${VERSION//./ } )   
+SEMVER=( ${VERSION//./ } )
 VERSION_LENGTH=${#SEMVER[@]}
 
 if [ $VERSION_LENGTH -ne 3 ]; then
